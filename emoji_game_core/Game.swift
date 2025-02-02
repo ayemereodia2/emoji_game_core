@@ -119,8 +119,8 @@ public class Game: EmojiGameInterface,GameEventEmitter {
 }
 
 
-// delegate communication approach to UI
-protocol GameEventEmitter: AnyObject {
+// closure-based communication approach to UI
+public protocol GameEventEmitter: AnyObject {
     var onStageCompletion: ((CurrentPlayResult) -> Void)? { get set }
     var onNewLevel: ((Int) -> Void)? { get set }
     var onGameCompletion: (() -> Void)? { get set }
