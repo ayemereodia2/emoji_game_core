@@ -21,10 +21,15 @@ public struct Emoji: Identifiable, Equatable {
 
 public struct EmojiResponse{
   let level: Int
-  let left: [Emoji]
-  let right: [Emoji]
+  let stage: [Stage]
 }
 
 public struct EmojiResponseList {
   let result: [EmojiResponse]
 }
+
+public struct Stage {
+  let left: [Emoji]
+  let right: [Emoji]
+}
+

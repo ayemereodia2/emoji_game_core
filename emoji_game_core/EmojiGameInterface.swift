@@ -16,6 +16,7 @@ public protocol EmojiGameInterface {
   func increaseDifficulty()
   func resetGame()
   func saveGame()
+  func nextStage()
 }
 
 protocol EmojiPairGenerator {

@@ -48,8 +48,8 @@ struct emoji_game_coreTests {
     // Arrange
     let game = Game(emojis: mockEmojiResponseList)
     game.startGame()
-    let left = singleResponse.left.first!
-    let right = singleResponse.right.first!
+    let left = singleResponse.stage[0].left.first!
+    let right = singleResponse.stage[0].right.first!
     // Assert
     let result = game.selectEmojiPair(left: left, right: right)
     #expect(result == .correct)
@@ -59,8 +59,8 @@ struct emoji_game_coreTests {
     // Arrange
     let game = Game(emojis: mockEmojiResponseList)
     game.startGame()
-    let left = singleResponse.left[1]
-    let right = singleResponse.right[2]
+    let left = singleResponse.stage[0].left[1]
+    let right = singleResponse.stage[0].right[2]
     // Assert
     let result = game.selectEmojiPair(left: left, right: right)
     #expect(result == .incorrect)
@@ -70,8 +70,8 @@ struct emoji_game_coreTests {
     // Arrange
     let game = Game(emojis: mockEmojiResponseList)
     game.startGame()
-    let left = singleResponse.left.first!
-    let right = singleResponse.right.first!
+    let left = singleResponse.stage[0].left.first!
+    let right = singleResponse.stage[0].right.first!
     // Assert
     let result = game.selectEmojiPair(left: left, right: right)
     let currentPlay = game.hasUserWonCurrentPlay()
@@ -84,24 +84,27 @@ struct emoji_game_coreTests {
     // Arrange
     let game = Game(emojis: mockEmojiResponseList)
     game.startGame()
-    let left = singleResponse.left.first!
-    let right = singleResponse.right.first!
+    let left = singleResponse.stage[0].left[0]
+    let right = singleResponse.stage[0].right[2]
     // Assert
     let result1 = game.selectEmojiPair(left: left, right: right)
     let result2 = game.selectEmojiPair(left: left, right: right)
     let result3 = game.selectEmojiPair(left: left, right: right)
     
-    let result4 = game.selectEmojiPair(left: left, right: right)
-
 
     let currentPlay = game.hasUserWonCurrentPlay()
     
-    #expect(result1 == .correct)
-    #expect(result2 == .correct)
-    #expect(result3 == .correct)
+    #expect(result1 == .incorrect)
+    #expect(result2 == .incorrect)
+    #expect(result3 == .incorrect)
     
-    #expect(currentPlay == .won)
+    #expect(currentPlay == .lost)
   }
 
 }
 
+// each level
+// contains 5 stages of emoji game play
+// 7 levels
+// 5 stages
+// = 35 game plays.
