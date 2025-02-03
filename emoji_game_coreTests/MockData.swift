@@ -35,6 +35,19 @@ let mockEmojiResponseList = EmojiResponseList(result: [
               Emoji(id: "11", name: "dog face", icon: "🐕", relatedID: "8"),
               Emoji(id: "12", name: "paintbrush", icon: "🖌️", relatedID: "9")
             ]
+          ),
+          
+          Stage(
+            left: [
+              Emoji(id: "13", name: "black grand pa", icon: "👴🏿", relatedID: "18"),
+              Emoji(id: "14", name: "white woman", icon: "👩‍🦳", relatedID: "16"),
+              Emoji(id: "15", name: "Cat", icon: "🐈", relatedID: "17")
+            ],
+            right: [
+              Emoji(id: "16", name: "white girl", icon: "🧒🏼", relatedID: "14"),
+              Emoji(id: "17", name: "smiling cat", icon: "😸", relatedID: "15"),
+              Emoji(id: "18", name: "black man", icon: "👱🏿‍♂️", relatedID: "13")
+            ]
           )
         ]
     ),

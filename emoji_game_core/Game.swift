@@ -15,9 +15,9 @@ import Foundation
 
 public class Game: EmojiGameInterface,GameEventEmitter {
   
-  var onStageCompletion: ((CurrentPlayResult) -> Void)?
-  var onNewLevel: ((Int) -> Void)?
-  var onGameCompletion: (() -> Void)?
+  public var onStageCompletion: ((CurrentPlayResult) -> Void)?
+  public var onNewLevel: ((Int) -> Void)?
+  public var onGameCompletion: (() -> Void)?
   
   private let emojiCount:Int = 0
   private let emojis:EmojiResponseList
@@ -81,16 +81,20 @@ public class Game: EmojiGameInterface,GameEventEmitter {
   
   public func nextStage() {
     let stageCount = self.levelEmoji[safe: level]?.stage.count ?? 0
-    let maxLevel = self.levelEmoji.map { $0.level }.max() ?? -1 // Assumes levels start from 0
+    let maxLevel = self.emojis.result.map { $0.level }.max() ?? -1 // Assumes levels start from 0
     
     if stage < stageCount {
       stage += 1
-    } else if level < maxLevel{
+    }
+    
+    if stage == stageCount && level < maxLevel{
       level += 1 // new level
       stage = 0 // first stage
       generateNewEmojiPairs(level: level) // Prepare for the new level
       onNewLevel?(level + 1)
-    } else {
+    }
+    
+    if stage == stageCount && level == maxLevel {
       // All levels and stages are completed
       stage = 0
       level = 0 // Reset to start if you want to loop the game
@@ -116,6 +120,17 @@ public class Game: EmojiGameInterface,GameEventEmitter {
     self.levelEmoji = emojis
   }
   
+  public func getStage() -> Int {
+    stage
+  }
+  
+  public func getLevel() -> Int {
+    level
+  }
+  
+  public func getCurrentEmoji() -> [EmojiResponse] {
+    levelEmoji
+  }
 }
 
 
